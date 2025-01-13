@@ -1,6 +1,6 @@
 import { FC } from 'react'
 export const App: FC = () => {
   return (
-    <div>App</div>
+    <div className="text-red-100">App</div>
   )
 }
