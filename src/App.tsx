@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { LowcodeEditor } from './view/lowcodeEditor'
+import { LowCodeEditor } from './view/LowCodeEditor'
 export const App: FC = () => {
   return (
     <>
-      <LowcodeEditor />
+      <LowCodeEditor />
     </>
   )
 }
