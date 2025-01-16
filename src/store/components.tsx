@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from "zustand"
 
 interface Component {
   id: number
@@ -38,7 +38,7 @@ export const useComponentStore = create<State & Action>((set, get) => ({
   components: [
     {
       id: 1,
-      name: 'div',
+      name: "div",
       props: {},
       children: [],
       parentId: 1
@@ -48,7 +48,6 @@ export const useComponentStore = create<State & Action>((set, get) => ({
     set((state) => {
       if (parentId) {
         const parentComponent = getComponentById(parentId, state.components)
-        console.log(parentComponent, 'parentComponents')
         
         if (parentComponent) {
           if (parentComponent.children) {
@@ -59,7 +58,6 @@ export const useComponentStore = create<State & Action>((set, get) => ({
         }
       }
       component.parentId = parentId
-      console.log({components: [...state.components]}, 'components: [...state.components]')
       return { components: [...state.components] }
     }),
   deleteComponent: (componentId) => {
@@ -86,4 +84,4 @@ export const useComponentStore = create<State & Action>((set, get) => ({
       }
       return {components: [...state.components]}
     })
-}));
+}))

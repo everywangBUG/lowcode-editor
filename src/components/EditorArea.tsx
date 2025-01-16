@@ -1,5 +1,5 @@
-import { FC, useEffect } from 'react'
-import { useComponentStore } from '../store/components'
+import { FC, useEffect } from "react"
+import { useComponentStore } from "../store/components"
 
 export const EditorArea: FC = () => {
   const { components, addComponent, deleteComponent, updateComponent } = useComponentStore()
@@ -7,14 +7,14 @@ export const EditorArea: FC = () => {
   useEffect(() => {
     addComponent({
       id: 2,
-      name: 'Container',
+      name: "Container",
       props: {},
       children: []
     }, 1)
 
     addComponent({
       id: 3,
-      name: 'Container',
+      name: "Container",
       props: {},
       children: []
     }, 2)
@@ -26,7 +26,7 @@ export const EditorArea: FC = () => {
 
 
     updateComponent(2, {
-      title: 'Test'
+      title: "Test"
     })
   }, [])
   
