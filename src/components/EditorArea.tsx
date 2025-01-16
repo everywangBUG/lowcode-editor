@@ -1,8 +1,10 @@
-import { FC, useEffect } from "react"
+import React, { FC, useEffect } from "react"
 import { useComponentStore } from "../store/components"
+import { Component, useComponentConfigStore } from "../store/componentConfig"
 
 export const EditorArea: FC = () => {
-  const { components, addComponent, deleteComponent, updateComponent } = useComponentStore()
+  const { components, addComponent } = useComponentStore()
+  const { componentConfig } = useComponentConfigStore()
 
   useEffect(() => {
     addComponent({
@@ -14,23 +16,35 @@ export const EditorArea: FC = () => {
 
     addComponent({
       id: 3,
-      name: "Container",
-      props: {},
+      name: "Button",
+      props: {
+        text: "确认"
+      },
       children: []
     }, 2)
-    
 
-    setTimeout(() => {
-      deleteComponent(3)
-    }, 2000)
-
-
-    updateComponent(2, {
-      title: "Test"
-    })
   }, [])
+
+  const renderComponents = (components: Component[]): React.ReactNode => {
+    return components.map((component: Component) => {
+      const config = componentConfig?.[component.name]
+      if (!config?.component) {
+        return null
+      }
+
+      return React.createElement(
+        config.component,
+        {
+          key: component.id,
+          ...config.defaultProps,
+          ...component.props
+        },
+        renderComponents(component.children || [])
+      )
+    })
+  }
   
   return (
-    <pre>{JSON.stringify(components, null, 2)}</pre>
+    <div className="h-[100%]">{JSON.stringify(renderComponents(components))}{renderComponents(components)}</div>
   )
 }
