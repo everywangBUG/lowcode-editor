@@ -45,6 +45,6 @@ export const EditorArea: FC = () => {
   }
   
   return (
-    <div className="h-[100%]">{JSON.stringify(renderComponents(components))}{renderComponents(components)}</div>
+    <div className="h-[100%]">{renderComponents(components)}</div>
   )
 }

@@ -38,7 +38,7 @@ export const useComponentStore = create<State & Action>((set, get) => ({
   components: [
     {
       id: 1,
-      name: "div",
+      name: "Container",
       props: {},
       children: [],
       parentId: 1
