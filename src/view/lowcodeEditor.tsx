@@ -3,7 +3,7 @@ import "allotment/dist/style.css"
 import { FC } from "react"
 import { Setting } from "../components/Setting"
 import { EditorArea } from "../components/EditorArea"
-import { Material } from "../components/Material"
+import { Material } from "../components/material/Material"
 
 export const LowCodeEditor: FC = () => {
   return (

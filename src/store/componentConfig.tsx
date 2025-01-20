@@ -9,6 +9,14 @@ export interface ComponentConfig {
   component: any
 }
 
+export interface Component {
+  id: number
+  name: string
+  props: Record<string, any>
+  children: Component[]
+  parentId?: number
+}
+
 interface State {
   componentConfig: {[key: string]: ComponentConfig}
 }
