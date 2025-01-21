@@ -1,22 +1,25 @@
-import { PropsWithChildren } from "react"
 import { useDrop } from "react-dnd"
-import { ComponentConfig, useComponentConfigStore } from "../store/componentConfig"
+import { useComponentConfigStore } from "../store/componentConfig"
 import { useComponentStore } from "../store/components"
+import { CommonComponentProps } from "./interface"
 
-function Page({ children }: PropsWithChildren) {
+function Page({ id, children }: CommonComponentProps) {
   const { componentConfig } = useComponentConfigStore()
-  const { components, addComponent } = useComponentStore()
+  const { addComponent } = useComponentStore()
 
-  const [{ canDrop }, drop] = useDrop({
+  const [_, drop] = useDrop({
     accept: ["Button", "Container"],
-    drop: (item: { type: string }) => {
+    drop: (item: { type: string }, monitor) => {
+      const didDrop = monitor.didDrop()
+      if (didDrop) {
+        return
+      }
       const props = componentConfig[item.type].defaultProps
       addComponent({
         id: new Date().getTime(),
         name: item.type,
         props
       }, id)
-
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
