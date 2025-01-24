@@ -6,6 +6,6 @@ export interface ButtonTypeProps {
   text: string
 }
 
-export const Button = ({type, text}: ButtonTypeProps) => {
-  return <AntButton type={type}>{text}</AntButton>
+export const Button = ({type, id, text}: ButtonTypeProps) => {
+  return <AntButton data-component-id={id} type={type}>{text}</AntButton>
 }
